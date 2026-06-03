@@ -1,0 +1,12 @@
+
+body{font-family:Arial,sans-serif;margin:0;line-height:1.6;background:#fffdf4}
+header{background:#1f1f1f;color:white;padding:15px}
+nav{display:flex;justify-content:space-between;align-items:center}
+nav a{color:#ffd54f;margin-left:15px;text-decoration:none}
+.hero{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#ffca28,#fff8e1)}
+.btn{display:inline-block;padding:12px 20px;background:#1f1f1f;color:#ffd54f;text-decoration:none;border-radius:6px}
+section{padding:50px 20px;max-width:1000px;margin:auto}
+form{display:flex;flex-direction:column;gap:10px}
+input,select,textarea,button{padding:10px}
+button{background:#ffca28;border:none;cursor:pointer}
+footer{text-align:center;background:#1f1f1f;color:white;padding:20px}
