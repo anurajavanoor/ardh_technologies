@@ -1,5 +1,1 @@
-
-document.querySelector('form').addEventListener('submit', function(e){
-e.preventDefault();
-alert('Thank you. Your inquiry has been recorded. Connect this form to Formspree or a backend service.');
-});
+const imgs=['achievements/award.jpg','achievements/book_release.jpg'];const g=document.getElementById('gallery');imgs.forEach((x,i)=>{const d=document.createElement('div');d.innerHTML=`<img src="${x}"><p>Achievement ${i+1}</p>`;g.appendChild(d);});
