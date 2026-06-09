@@ -1,5 +1,5 @@
 // =============================================
-// ARDH Technologies — script.js
+// ARDHA Technologies — script.js
 // =============================================
 
 // ---- Contact form ----
@@ -10,10 +10,10 @@ if (form) {
     const btn = form.querySelector('.btn-submit');
     btn.textContent = 'Sending…';
     btn.disabled = true;
-    // Replace this with Formspree or your backend
+    // Connect to Formspree or your backend for real emails
     setTimeout(() => {
       btn.textContent = '✓ Inquiry Sent!';
-      btn.style.background = '#4caf50';
+      btn.style.background = '#22c55e';
       form.reset();
       setTimeout(() => {
         btn.textContent = 'Send Inquiry →';
@@ -30,6 +30,7 @@ if (form) {
   const dots   = document.querySelectorAll('.dot');
   const prev   = document.getElementById('prevBtn');
   const next   = document.getElementById('nextBtn');
+  if (!slides.length) return;
   let current  = 0;
   let autoTimer;
 
@@ -41,24 +42,16 @@ if (form) {
     dots[current].classList.add('active');
   }
 
-  function startAuto() {
-    autoTimer = setInterval(() => goTo(current + 1), 5000);
-  }
-  function resetAuto() {
-    clearInterval(autoTimer);
-    startAuto();
-  }
+  function startAuto() { autoTimer = setInterval(() => goTo(current + 1), 5000); }
+  function resetAuto()  { clearInterval(autoTimer); startAuto(); }
 
   if (prev) prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
   if (next) next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => { goTo(+dot.dataset.slide); resetAuto(); });
-  });
+  dots.forEach(dot => dot.addEventListener('click', () => { goTo(+dot.dataset.slide); resetAuto(); }));
 
   startAuto();
 
-  // Touch/swipe support
+  // Swipe support
   let touchStartX = 0;
   const ss = document.getElementById('slideshow');
   if (ss) {
@@ -71,23 +64,20 @@ if (form) {
 })();
 
 // ---- Mobile nav toggle ----
-const navToggle  = document.getElementById('navToggle');
-const navLinks   = document.getElementById('navLinks');
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 }
 
 // ---- Header scroll effect ----
 window.addEventListener('scroll', () => {
   const header = document.getElementById('header');
-  if (window.scrollY > 50) {
-    header.style.background = 'rgba(13,13,13,0.98)';
-  } else {
-    header.style.background = 'rgba(13,13,13,0.92)';
-  }
+  if (!header) return;
+  header.style.background = window.scrollY > 50
+    ? 'rgba(11,31,58,0.99)'
+    : 'rgba(11,31,58,0.95)';
 }, { passive: true });
 
 // ---- Fade-in on scroll ----
@@ -98,9 +88,9 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.style.transform = 'translateY(0)';
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
-document.querySelectorAll('.service-card, .contact-card, .howto-step').forEach(el => {
+document.querySelectorAll('.service-card, .contact-card, .pub-stat-card, .ip-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
